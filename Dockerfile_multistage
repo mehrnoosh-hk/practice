@@ -1,0 +1,26 @@
+# syntax=docker/dockerfile1
+
+# Build Stage
+
+FROM golang:1.18-alpine AS build
+
+WORKDIR /app
+
+COPY go.mod .
+
+RUN go mod download
+
+COPY *.go /app/
+
+RUN go build -o /main
+
+
+# Deploy Stage
+
+FROM alpine
+
+WORKDIR /
+
+COPY --from=build /main /main
+
+ENTRYPOINT ["/main"]
