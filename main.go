@@ -1,15 +1,33 @@
 package main
 
 import (
+	"github/practice/pkg/web"
 	"log"
-	"net/http"
+	"os"
 )
+
+func WebAppSetup() {
+
+	// Create a PhoneBook web application
+	app := web.WebPhoneBook{
+		InfoLog: log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime),
+		ErrorLog: log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile),
+		Host: ":9090",
+	}
+
+	// Set the routers for web application
+	app.RoutersSetup()
+
+	// Start up the web server
+	app.ServerStartup()
+}
 
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-		w.Write([]byte("Hello World"))
-	})
-	log.Println("Server listen on :9090")
-	log.Fatal(http.ListenAndServe(":9090", nil))
+	appType := os.Args[1]
+	
+	if appType == "Web" {
+		WebAppSetup()
+	}
+
 }
