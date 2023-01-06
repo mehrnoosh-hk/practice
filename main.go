@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github/practice/pkg/storage"
 	"github/practice/pkg/web"
 	"log"
 	"os"
@@ -13,6 +14,7 @@ func WebAppSetup() {
 		InfoLog: log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime),
 		ErrorLog: log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile),
 		Host: ":9090",
+    Storage: storage.NewInMemoryDB(),
 	}
 
 	// Set the routers for web application

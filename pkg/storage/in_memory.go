@@ -1,19 +1,21 @@
 package storage
 
 import (
-  "github.com/rs/xid"
+	"github/practice/pkg/domain/entity"
+	"strconv"
 )
 
-type InMemoryDB map[string]interface{}
+type InMemoryDB map[string]entity.Contact
 
 
 func NewInMemoryDB() InMemoryDB {
-	MemoryDB := make(map[string]interface{})
+	MemoryDB := make(map[string]entity.Contact)
 	return MemoryDB
 }
 
 
-func(IMDB InMemoryDB) Create(c interface{}) (string, error){
-  id := xid.New()
+func(IMDB InMemoryDB) Create(c entity.Contact) (string, error){
+  id := strconv.Itoa(len(IMDB) + 1)
   IMDB[id] = c
+  return id, nil 
 }

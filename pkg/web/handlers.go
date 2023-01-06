@@ -19,4 +19,5 @@ func (app WebPhoneBook) CreateContact(w http.ResponseWriter, r *http.Request) {
 		app.ErrorLog.Fatal(err)
 	}
 	id, err := services.CreateContact(c, app.Storage)
+  w.Write([]byte(id))
 }
