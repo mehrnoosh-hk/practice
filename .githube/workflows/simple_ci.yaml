@@ -1,0 +1,22 @@
+name: Go Phone
+
+on: [push]
+
+jobs:
+  CI:
+    runs-on:
+      ubuntu-latest
+    steps:
+      - name: check-out
+        uses: actions/checkout@v3
+
+      - name: set-up
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: tests
+        run: go test -v ./...
+
+  CD:
+
