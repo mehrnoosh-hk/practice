@@ -1,6 +1,7 @@
 package web
 
 import (
+	"github/practice/pkg/domain/services"
 	"log"
 	"net/http"
 )
@@ -10,6 +11,7 @@ type WebPhoneBook struct {
 	ErrorLog *log.Logger
 	ServerMux *http.ServeMux
 	Host string
+  Storage services.Storage
 }
 
 

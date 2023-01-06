@@ -29,5 +29,4 @@ func main() {
 	if appType == "Web" {
 		WebAppSetup()
 	}
-
 }
